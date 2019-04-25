@@ -1321,4 +1321,169 @@ float initial::give_balance(int t_accno)
 
 }
 
+ }while(!valid);
+
+   if(strlen(t_name)>0)
+
+       modified=1;
+
+   do
+
+   {
+
+      a.clear(15,16);
+
+      a.clear(5,23);
+
+      gotoxy(5,23);
+
+      cout< <"ENTER ADDRESS OR PRESS <ENTER> FOR NO CHANGE";
+
+      valid=1;
+
+      gotoxy(15,16);
+
+      gets(t_address);
+
+      strupr(t_address);
+
+      if(t_address[0]=='0')
+
+           return;
+
+      if(strlen(t_address)>55)
+
+      {
+
+        valid=0;
+
+        gotoxy(5,23);
+
+        cprintf("\7SHOULD NOT BLANK OR GREATER THAN 55");
+
+        getch();
+
+      }
+
+   }while(!valid);
+
+   if(strlen(t_address)>0)
+
+      modified=1;
+
+   if(!modified)
+
+       return;
+
+   a.clear(5,23);
+
+   do
+
+   {
+
+     a.clear(5,18);
+
+     gotoxy(5,18);
+
+     cout< <"DO YOU WANT TO SAVE CHANGES  (Y/N):";
+
+     ch=getche();
+
+     if(ch=='0')
+
+        return;
+
+     ch=toupper(ch);
+
+   }while(ch!='N' && ch!='Y');
+
+   if(ch=='N')
+
+     return;
+
+   modify_account(t_accno,t_name,t_address);
+
+   gotoxy(5,21);
+
+   cout<<"\7RECORD MODIFIED";
+
+   gotoxy(5,23);
+
+   cout<<"PRESS ANY KEY TO CONTINUE...";
+
+   getch();
+
+}
+
  
+
+//=============================================================
+
+//       THIS FUNCTION CLEAR THE GIVEN ROW AND COLUMNS
+
+//=============================================================
+
+ 
+
+void account::clear(int col, int row)
+
+{
+
+   for(int i=col;i<=78;i++)
+
+      {
+
+        gotoxy(i,row);
+
+        cout<<"       ";
+
+      }
+
+}
+
+ 
+
+//============================================================
+
+//THIS FUNCTION ADDS THE GIVEN DATA INTO THE FILE
+
+//BANKING.DAT
+
+//============================================================
+
+void account::add_to_file(int t_accno,int d1,int m1, int y1,
+
+                         char t_tran,char t_type[10],float t_interest,
+
+                         float t_amount, float t_balance)
+
+{
+
+   fstream file;
+
+   file.open("BANKING.DAT",ios::app);
+
+   accno=t_accno;
+
+   dd=d1;
+
+   mm=m1;
+
+   yy=y1;
+
+   tran=t_tran;
+
+   strcpy(type,t_type);
+
+   interest=t_interest;
+
+   amount=t_amount;
+
+   balance=t_balance;
+
+   file.write((char*)this,sizeof(account));
+
+   file.close();
+
+}
+

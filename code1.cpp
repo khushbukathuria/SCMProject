@@ -1124,3 +1124,65 @@ file.close();
 return count;
 
 }
+
+
+
+//===========================================================
+
+//THIS FUNTION DISPLAY THE ACCOUNT FOR GIVEN ACCOUNT NO.
+
+//FROM THE FILE INITIAL.DAT
+
+//===========================================================
+
+ 
+
+void initial::display(int t_accno)
+
+{
+
+   shape s;
+
+   s.box(8,7,73,11,219);
+
+   fstream file;
+
+   file.open("INITIAL.DAT",ios::in);
+
+   file.seekg(0,ios::beg);
+
+   while(file.read((char*) this,sizeof(initial)))
+
+    {
+
+      if(t_accno==accno)
+
+      {
+
+        gotoxy(8,5);
+
+        cout< <"ACCOUNT NO. "<<accno;
+
+        gotoxy(10,8);
+
+        cout<<"NAME         :"<<name;
+
+        gotoxy(10,9);
+
+        cout<<"ADDRERSS     :"<<address;
+
+        gotoxy(10,10);
+
+        cout<<"BALANCE     :"<<balance;
+
+        break;
+
+      }
+
+    }
+
+    file.close();
+
+}
+
+ 

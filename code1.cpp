@@ -1277,4 +1277,48 @@ char *initial::return_address(int t_accno)
 
 }
 
+ //============================================================
+
+//THIS FUNCTION RETURN BALANCE FOR THE GIVEN ACCOUNT NO.
+
+//IN THE FILE INITIAL.DAT
+
+//============================================================
+
+ 
+
+float initial::give_balance(int t_accno)
+
+{
+
+  fstream file;
+
+  file.open("INITIAL.DAT",ios::in);
+
+  file.seekg(0,ios::beg);
+
+  float t_balance;
+
+  while(file.read((char *)this, sizeof(initial)))
+
+      {
+
+       if(accno==t_accno)
+
+         {
+
+         t_balance=balance;
+
+         break;
+
+         }
+
+       }
+
+  file.close();
+
+  return t_balance;
+
+}
+
  

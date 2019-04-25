@@ -1321,4 +1321,312 @@ float initial::give_balance(int t_accno)
 
 }
 
+ //============================================================
+
+//THIS FUNCTION RETURN BALANCE FOR THE GIVEN ACCOUNT NO.
+
+//IN THE FILE INITIAL.DAT
+
+//============================================================
+
+ 
+
+float initial::give_balance(int t_accno)
+
+{
+
+  fstream file;
+
+  file.open("INITIAL.DAT",ios::in);
+
+  file.seekg(0,ios::beg);
+
+  float t_balance;
+
+  while(file.read((char *)this, sizeof(initial)))
+
+      {
+
+       if(accno==t_accno)
+
+         {
+
+         t_balance=balance;
+
+         break;
+
+         }
+
+       }
+
+  file.close();
+
+  return t_balance;
+
+}
+//============================================================
+
+//THIS FUNCTION RETURN BALANCE FOR THE GIVEN ACCOUNT NO.
+
+//IN THE FILE INITIAL.DAT
+
+//============================================================
+
+ 
+
+float initial::give_balance(int t_accno)
+
+{
+
+  fstream file;
+
+  file.open("INITIAL.DAT",ios::in);
+
+  file.seekg(0,ios::beg);
+
+  float t_balance;
+
+  while(file.read((char *)this, sizeof(initial)))
+
+      {
+
+       if(accno==t_accno)
+
+         {
+
+         t_balance=balance;
+
+         break;
+
+         }
+
+       }
+
+  file.close();
+
+  return t_balance;
+
+}
+
+ //============================================================
+
+//THIS FUNCTION RETURN BALANCE FOR THE GIVEN ACCOUNT NO.
+
+//IN THE FILE INITIAL.DAT
+
+//============================================================
+
+ 
+
+float initial::give_balance(int t_accno)
+
+{
+
+  fstream file;
+
+  file.open("INITIAL.DAT",ios::in);
+
+  file.seekg(0,ios::beg);
+
+  float t_balance;
+
+  while(file.read((char *)this, sizeof(initial)))
+
+      {
+
+       if(accno==t_accno)
+
+         {
+
+         t_balance=balance;
+
+         break;
+
+         }
+
+       }
+
+  file.close();
+
+  return t_balance;
+
+}
+
+ //============================================================
+
+//THIS FUNCTION GIVE THE DATA TO MODIFY THE RECORD IN THE
+
+//FILE INITIAL.DAT
+
+//============================================================
+
+ 
+
+void initial::modify(void)
+
+{
+
+   clrscr();
+
+   char t_acc[10];
+
+   int t, t_accno;
+
+   gotoxy(71,1);
+
+   cout<<"&lt;0>=EXIT";
+
+   gotoxy(5,5);
+
+   cout< <"ENTER THE ACCOUNT NO.";
+
+   gets(t_acc);
+
+   t=atoi(t_acc);
+
+   t_accno=t;
+
+   if(t_accno==0)
+
+       return;
+
+   clrscr();
+
+   if(!found_account(t_accno))
+
+   {
+
+     gotoxy(5,5);
+
+     cout<<"\7ACCOUNT NOT FOUND";
+
+     getch();
+
+     return;
+
+   }
+
+   shape s;
+
+   s.box(2,2,79,24,218);
+
+   s.line_hor(3,78,4,196);
+
+   s.line_hor(3,78,22,196);
+
+   gotoxy(71,1);
+
+   cout<<"&lt;0>=EXIT";
+
+   textbackground(BLACK);
+
+   gotoxy(3,3);
+
+   for(int i=1;i< =76;i++) cprintf("  ");
+
+   textbackground(BLACK);
+
+   textcolor(LIGHTBLUE+BLINK); textbackground(BLACK);
+
+   gotoxy(30,3);
+
+   cprintf("MODIFY ACCOUNT SCREEN");
+
+   textcolor(LIGHTBLUE); textbackground(BLACK);
+
+   int d1,m1,y1;
+
+   struct date d;
+
+   getdate(&d);
+
+   d1=d.da_day;
+
+   m1=d.da_mon;
+
+   y1=d.da_year;
+
+   gotoxy(62,5);
+
+   cout<<"DATE:"<<d1<<"/"<<m1<<"/"<<y1;
+
+   char ch;
+
+   display(t_accno);
+
+   account a;
+
+   do
+
+   {
+
+     a.clear(5,13);
+
+     gotoxy(5,13);
+
+     cout<<"MODIFY THIS ACCOUNT(Y/N):";
+
+     ch=getche();
+
+     if(ch=='0')
+
+           return;
+
+     ch=toupper(ch);
+
+   }while(ch!='N' && ch!='Y');
+
+   if(ch=='N')
+
+      return;
+
+   int modified=0,valid;
+
+   char t_name[30], t_address[60];
+
+   gotoxy(5,15);
+
+   cout<<"NAME   :";
+
+   gotoxy(5,16);
+
+   cout<<"ADDRESS  :";
+
+   do
+
+   {
+
+     a.clear(15,15);
+
+     a.clear(5,23);
+
+     gotoxy(5,23);
+
+     cout<<"ENTER NAME OR PRESS <ENTER> FOR NO CHANGE";
+
+     valid=1;
+
+     gotoxy(15,15);
+
+     gets(t_name);
+
+     strupr(t_name);
+
+     if(t_name[0]=='0')
+
+          return;
+
+     if(strlen(t_name)>25)
+
+     {
+
+        valid=0;
+
+        gotoxy(5,23);
+
+        cprintf("\7NAME SHOULD NOT GREATER THAN 25");
+
+        getch();
+
+     }
  

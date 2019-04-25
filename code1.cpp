@@ -1185,4 +1185,96 @@ void initial::display(int t_accno)
 
 }
 
+ //=============================================================
+
+//THIS FUNCTION RETURNS NAME FOR THE GIVEN ACCOUNT NO.
+
+//IN THE FILE INITIAL.DAT
+
+//=============================================================
+
+ 
+
+char *initial::return_name(int t_accno)
+
+{
+
+fstream file;
+
+file.open("INITIAL.DAT",ios::in);
+
+file.seekg(0,ios::beg);
+
+char t_name[30];
+
+while(file.read((char *) this, sizeof(initial)))
+
+     {
+
+      if(accno==t_accno)
+
+        {
+
+        strcpy(t_name,name);
+
+        break;
+
+        }
+
+      }
+
+file.close();
+
+return t_name;
+
+}
+
+ 
+
+//=========================================================
+
+//THIS FUNCTION RETURNS ADDRESS FOR THE GIVEN ACCOUNT NO.
+
+//IN THE FILE INITIAL.DAT
+
+//=========================================================
+
+ 
+
+char *initial::return_address(int t_accno)
+
+{
+
+  fstream file;
+
+  file.open("INITIAL.DAT",ios::in);
+
+  file.seekg(0,ios::beg);
+
+  char t_address[60];
+
+  while(file.read((char *)this, sizeof(initial)))
+
+       {
+
+ 
+
+       if(accno==t_accno)
+
+         {
+
+         strcpy(t_address,address);
+
+         break;
+
+         }
+
+       }
+
+  file.close();
+
+  return t_address;
+
+}
+
  

@@ -1050,3 +1050,275 @@ void account::new_account(void)
       cout< <"ENTER INITIAL AMOUNT TO BE DEPOSIT";
       valid=1;
 <span lang="EN-
+
+//========================================================
+
+//THIS FUNCTION RETURN LAST ACCOUNT NO. IN  THE FILE
+
+//INITIAL.DAT
+
+//========================================================
+
+ 
+
+int initial::last_accno(void)
+
+{
+
+fstream file;
+
+file.open("INITIAL.DAT", ios::in);
+
+file.seekg(0,ios::beg);
+
+int count=0;
+
+while(file.read((char*)this, sizeof(initial)))
+
+   count=accno;
+
+   file.close();
+
+   return count;
+
+}
+
+ 
+
+//==========================================================
+
+//THIS FUNCTION RETURN RECORD NO. OF THE GIVEN ACCOUNT NO.
+
+//IN THE FILE INITIAL.DAT
+
+//==========================================================
+
+ 
+
+int initial::recordno(int t_accno)
+
+{
+
+fstream file;
+
+file.open("INITIAL.DAT",ios::in);
+
+file.seekg(0,ios::beg);
+
+int count=0;
+
+while (file.read((char*)this, sizeof(initial)))
+
+{
+
+count++;
+
+if(t_accno==accno)
+
+       break;
+
+}
+
+file.close();
+
+return count;
+
+}
+
+
+
+//===========================================================
+
+//THIS FUNTION DISPLAY THE ACCOUNT FOR GIVEN ACCOUNT NO.
+
+//FROM THE FILE INITIAL.DAT
+
+//===========================================================
+
+ 
+
+void initial::display(int t_accno)
+
+{
+
+   shape s;
+
+   s.box(8,7,73,11,219);
+
+   fstream file;
+
+   file.open("INITIAL.DAT",ios::in);
+
+   file.seekg(0,ios::beg);
+
+   while(file.read((char*) this,sizeof(initial)))
+
+    {
+
+      if(t_accno==accno)
+
+      {
+
+        gotoxy(8,5);
+
+        cout< <"ACCOUNT NO. "<<accno;
+
+        gotoxy(10,8);
+
+        cout<<"NAME         :"<<name;
+
+        gotoxy(10,9);
+
+        cout<<"ADDRERSS     :"<<address;
+
+        gotoxy(10,10);
+
+        cout<<"BALANCE     :"<<balance;
+
+        break;
+
+      }
+
+    }
+
+    file.close();
+
+}
+
+ //=============================================================
+
+//THIS FUNCTION RETURNS NAME FOR THE GIVEN ACCOUNT NO.
+
+//IN THE FILE INITIAL.DAT
+
+//=============================================================
+
+ 
+
+char *initial::return_name(int t_accno)
+
+{
+
+fstream file;
+
+file.open("INITIAL.DAT",ios::in);
+
+file.seekg(0,ios::beg);
+
+char t_name[30];
+
+while(file.read((char *) this, sizeof(initial)))
+
+     {
+
+      if(accno==t_accno)
+
+        {
+
+        strcpy(t_name,name);
+
+        break;
+
+        }
+
+      }
+
+file.close();
+
+return t_name;
+
+}
+
+ 
+
+//=========================================================
+
+//THIS FUNCTION RETURNS ADDRESS FOR THE GIVEN ACCOUNT NO.
+
+//IN THE FILE INITIAL.DAT
+
+//=========================================================
+
+ 
+
+char *initial::return_address(int t_accno)
+
+{
+
+  fstream file;
+
+  file.open("INITIAL.DAT",ios::in);
+
+  file.seekg(0,ios::beg);
+
+  char t_address[60];
+
+  while(file.read((char *)this, sizeof(initial)))
+
+       {
+
+ 
+
+       if(accno==t_accno)
+
+         {
+
+         strcpy(t_address,address);
+
+         break;
+
+         }
+
+       }
+
+  file.close();
+
+  return t_address;
+
+}
+
+ //============================================================
+
+//THIS FUNCTION RETURN BALANCE FOR THE GIVEN ACCOUNT NO.
+
+//IN THE FILE INITIAL.DAT
+
+//============================================================
+
+ 
+
+float initial::give_balance(int t_accno)
+
+{
+
+  fstream file;
+
+  file.open("INITIAL.DAT",ios::in);
+
+  file.seekg(0,ios::beg);
+
+  float t_balance;
+
+  while(file.read((char *)this, sizeof(initial)))
+
+      {
+
+       if(accno==t_accno)
+
+         {
+
+         t_balance=balance;
+
+         break;
+
+         }
+
+       }
+
+  file.close();
+
+  return t_balance;
+
+}
+
+ 

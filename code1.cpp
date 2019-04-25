@@ -1050,3 +1050,77 @@ void account::new_account(void)
       cout< <"ENTER INITIAL AMOUNT TO BE DEPOSIT";
       valid=1;
 <span lang="EN-
+
+//========================================================
+
+//THIS FUNCTION RETURN LAST ACCOUNT NO. IN  THE FILE
+
+//INITIAL.DAT
+
+//========================================================
+
+ 
+
+int initial::last_accno(void)
+
+{
+
+fstream file;
+
+file.open("INITIAL.DAT", ios::in);
+
+file.seekg(0,ios::beg);
+
+int count=0;
+
+while(file.read((char*)this, sizeof(initial)))
+
+   count=accno;
+
+   file.close();
+
+   return count;
+
+}
+
+ 
+
+//==========================================================
+
+//THIS FUNCTION RETURN RECORD NO. OF THE GIVEN ACCOUNT NO.
+
+//IN THE FILE INITIAL.DAT
+
+//==========================================================
+
+ 
+
+int initial::recordno(int t_accno)
+
+{
+
+fstream file;
+
+file.open("INITIAL.DAT",ios::in);
+
+file.seekg(0,ios::beg);
+
+int count=0;
+
+while (file.read((char*)this, sizeof(initial)))
+
+{
+
+count++;
+
+if(t_accno==accno)
+
+       break;
+
+}
+
+file.close();
+
+return count;
+
+}
